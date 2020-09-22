@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+<!--
+load-on-startup:
+    1.标记容器是否应该在web应用程序启动的时候加载这个servlet
+    2.值必须是一个整数，不写或者为负数，则容器会当Servlet被请求时再加载，
+       如果是正整数或0，按从小到大的顺序，在容器启动时就加载，值相同时加载顺序由容器决定
+-->
+    <servlet>
+        <servlet-name>my</servlet-name>
+        <servlet-class>com.lea.servlet.MyServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <!--
+        <url-pattern>
+        必须以“/” 开头
+        /具体名称
+        /* 匹配所有的请求  （不会影响精确匹配的mapping）
+        *.xxx 匹配所有以xxx结尾的文件
+        / 匹配所有请求，包括服务器所有资源，不包括jsp
+     -->
+    <servlet-mapping>
+        <servlet-name>my</servlet-name>
+        <url-pattern>/my</url-pattern>
+    </servlet-mapping>
+
+    <!-- 专注service方法的servlet -->
+    <servlet>
+        <servlet-name>gens</servlet-name>
+        <servlet-class>com.lea.servlet.GenServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>gens</servlet-name>
+        <url-pattern>/gens</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- 封装完善的HttpServlet -->
+    <servlet>
+        <servlet-name>hs</servlet-name>
+        <servlet-class>com.lea.servlet.HttpsServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>hs</servlet-name>
+        <url-pattern>/hs</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <!-- 登录servlet -->
+        <welcome-file>login</welcome-file>
+        <!-- 登录静态页面 -->
+        <welcome-file>login.html</welcome-file>
+    </welcome-file-list>
+</web-app>
