@@ -47,7 +47,8 @@ public class HttpsServlet extends HttpServlet {
         作用：
             1.读取Http协议包请求行中的信息
             2.保存请求头或请求参数信息
-            3.可以代替浏览器向Http服务器申请资源文件调用
+            3.可以代替浏览器向Http服务器申请资源文件调用 （服务器转发）
+            4.在转发中，共用一个客户端发送的http协议包（请求体、响应体）
     HttpServletResponse:
         实现类由Http服务器提供，将doGet/doPost方法执行结果写入到响应体中交给浏览器处理
         主要功能：
