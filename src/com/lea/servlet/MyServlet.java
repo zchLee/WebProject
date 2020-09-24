@@ -8,6 +8,9 @@ import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 /**
+ * 除了startup.bat启动之外
+ * catalina run 命令也可以启动：执行时可以查看打印的异常
+ *
  * 规范：
  *  1.Servlet规范来自于java规范中的一种
  *  2.作用：

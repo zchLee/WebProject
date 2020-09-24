@@ -71,17 +71,17 @@ public class HttpsServlet extends HttpServlet {
 
         // 响应体
         // 在响应里写入返回数据,tomcat将响应体 推向客户端
-        resp.setContentType("text/html;charset=UTF-8");  //content-type 客户端通过此配置，做出对应处理，默认是text
-        String url = "https://www.baidu.com?q=中国好声音";
+//        resp.setContentType("text/html;charset=UTF-8");  //content-type 客户端通过此配置，做出对应处理，默认是text
+//        String url = "https://www.baidu.com?q=中国好声音";
 //        resp.setLocale();
 
-        ServletOutputStream outputStream = resp.getOutputStream();
-        outputStream.write("<h1>I get you. this get </h1>".getBytes());
-        outputStream.write("</br>吃个寂寞".getBytes());
-        outputStream.close();
+//        ServletOutputStream outputStream = resp.getOutputStream();
+//        outputStream.write("<h1>I get you. this get </h1>".getBytes());
+//        outputStream.write("</br>吃个寂寞".getBytes());
+//        outputStream.close();
 //        重定向
         // 通过响应对象，将地址赋值给响应头中的location属性， 然后友浏览器重新转发请求
-        resp.sendRedirect(url);
+//        resp.sendRedirect(url);
 //        resp.encodeRedirectURL()
     }
 
