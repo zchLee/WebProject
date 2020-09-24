@@ -35,7 +35,8 @@ public class Login extends HttpsServlet {
 
         // 校验，
         // 此处图方便，表、dao、service都没有建，第一次学要一步一个脚印的做，我这是复习以前学过的知识
-//        Connection connection = DBUtils.getConnection();
+        Connection connection = DBUtils.getConnection();
+        System.out.println(connection);
 //        String sql = "select * from user where username = ? and password = ?";
 //        QueryRunner runner = new QueryRunner();
         try {
@@ -60,5 +61,10 @@ public class Login extends HttpsServlet {
         } catch (Exception throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
     }
 }

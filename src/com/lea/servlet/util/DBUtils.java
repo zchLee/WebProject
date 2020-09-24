@@ -2,7 +2,10 @@ package com.lea.servlet.util;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
+import com.alibaba.druid.sql.dialect.sqlserver.ast.SQLServerOutput;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,12 +21,12 @@ public class DBUtils {
 
     private static DruidDataSource dataSource;
 
-    private static final ThreadLocal<Connection> THREAD_LOCAL = new ThreadLocal<>();
+//    private static final ThreadLocal<Connection> THREAD_LOCAL = new ThreadLocal<>();
 
     static {
         try {
             Properties properties = new Properties();
-            InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream("database.properties");
+            InputStream is = DBUtils.class.getClassLoader().getResourceAsStream("database.properties");
             properties.load(is);
             dataSource = (DruidDataSource) DruidDataSourceFactory.createDataSource(properties);
         } catch (Exception e) {
@@ -33,14 +36,11 @@ public class DBUtils {
 
     // 获取连接
     public static Connection getConnection() {
-        Connection connection = THREAD_LOCAL.get();
-        if (null == connection) {
-            try {
-                connection = dataSource.getConnection();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-            THREAD_LOCAL.set(connection);
+        Connection connection = null;
+        try {
+            connection = dataSource.getConnection();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
         return connection;
     }
@@ -102,7 +102,7 @@ public class DBUtils {
         if (null != con) {
             try {
                 con.close();
-                THREAD_LOCAL.remove();
+//                THREAD_LOCAL.remove();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
