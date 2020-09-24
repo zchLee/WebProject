@@ -52,9 +52,50 @@ load-on-startup:
     </servlet-mapping>
 
     <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
         <!-- 登录servlet -->
-        <welcome-file>login</welcome-file>
+<!--        <welcome-file>login</welcome-file>-->
         <!-- 登录静态页面 -->
-        <welcome-file>login.html</welcome-file>
+<!--        <welcome-file>login.html</welcome-file>-->
     </welcome-file-list>
+
+
+    <!-- 将监听器接口实现类注册到Tomcat服务器 -->
+    <listener>
+        <listener-class>com.lea.servlet.expand.listener.ListenerTest</listener-class>
+    </listener>
+    <listener>
+        <listener-class>com.lea.servlet.expand.listener.ContextAttributeListenerTest</listener-class>
+    </listener>
+
+    <!-- 将过滤器注册到tomcat，并设置别名 -->
+    <filter>
+        <filter-name>loginFileter</filter-name>
+        <filter-class>com.lea.servlet.expand.filter.FilterTest</filter-class>
+    </filter>
+    <!-- 请求目的路径，进入对应别名过滤器 -->
+    <filter-mapping>
+        <filter-name>loginFileter</filter-name>
+        <url-pattern>/hs</url-pattern>
+    </filter-mapping>
+
+    <!-- 增强request 做字符编码 -->
+    <filter>
+        <filter-name>FilterCharset</filter-name>
+        <filter-class>com.lea.servlet.expand.filter.FilterCharset</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterCharset</filter-name>
+        <url-pattern>/hs</url-pattern>
+    </filter-mapping>
+
+    <!-- 登录校验 -->
+    <filter>
+        <filter-name>LoginFileter</filter-name>
+        <filter-class>com.lea.servlet.expand.filter.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFileter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>
